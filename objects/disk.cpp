@@ -4,13 +4,14 @@
 
 Disk::Disk() : TriMesh() {
     _name = "Disque";
-    int nbStep = 20;
+    int nbStep = 10;
     // Vector of vector initialization
     static vector<vector<GLfloat>> v(nbStep+1, vector<GLfloat>(3));
     static vector<vector<GLfloat>> t(nbStep, vector<GLfloat>(3));
     static vector<vector<GLfloat>> nt(nbStep, vector<GLfloat>(3));
     v[0] = {0,0,0};
     GLfloat p = 0;
+
 
             for( GLfloat n = 1; n <= nbStep; n++ ) {
                 p+= 2 * M_PI / (GLfloat)nbStep;
@@ -30,7 +31,7 @@ Disk::Disk() : TriMesh() {
 
             for (int i=0; i<nbStep; ++i) {
                 this->addTriangle(t[i][0], t[i][1], t[i][2]);
-                nt[i] = {0, 0, 1};
+                nt[i] = {0, 0, 0.5};
             }
 
 

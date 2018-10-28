@@ -1,5 +1,5 @@
 #include "pyramid.h"
-
+#include "QDebug"
 
 
 Pyramid::Pyramid()
@@ -24,6 +24,7 @@ Pyramid::Pyramid()
   for (i=0; i<6; ++i)
     this->addTriangle(ts[i][0], ts[i][1], ts[i][2]);
 
+  qDebug() << "pyramid";
   computeNormalsT();  // to be fixed
   computeNormalsV();  // to be fixed
 }

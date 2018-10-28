@@ -1,4 +1,5 @@
 #include "cube.h"
+#include "QDebug"
 
 Cube::Cube()
   : TriMesh()
@@ -52,7 +53,7 @@ Cube::Cube()
   bool use_computed_normals = true;
 
   if (use_computed_normals) {
-
+      qDebug() << "cube";
       computeNormalsT();  // to be fixed
       computeNormalsV();  // to be fixed
 

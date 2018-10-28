@@ -1,4 +1,5 @@
 #include "corner_cube.h"
+#include "QDebug"
 
 CornerCube::CornerCube()
   : TriMesh()
@@ -50,7 +51,7 @@ CornerCube::CornerCube()
   bool use_computed_normals = true;
 
   if (use_computed_normals) {
-
+      qDebug() << "corner_cube";
       computeNormalsT();  // to be fixed
       computeNormalsV();  // to be fixed
 
