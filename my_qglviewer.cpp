@@ -38,5 +38,5 @@ void MyQGLViewer::keyPressEvent(QKeyEvent *e)
     QGLViewer::keyPressEvent(e);
 
   // update the window
-  updateGL();
+  //updateGL();
 }
