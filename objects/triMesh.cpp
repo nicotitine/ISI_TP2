@@ -73,7 +73,6 @@ void TriMesh::computeNormalsT(){
 
 void TriMesh::computeNormalsV(float angle_threshold){
   _normalsV.empty();
-  std::vector<Normal> nearNormals;
   int size = 0;
   // Compute a normal for each vertex of each triangle
   // and put it in normalsV vector.
@@ -82,20 +81,25 @@ void TriMesh::computeNormalsV(float angle_threshold){
   // is below the angle_threshold is taken into account.
 
   // Replace code below
+
+
+
+  //Calculating normalsV.size()
   for(unsigned int i = 0; i < _vertices.size(); i++) {
-      nearNormals.resize(0);
-      //qDebug() << _vertices[i][0] << _vertices[i][1] << _vertices[i][2] << " normal size : " << _normalsT.size();
       for(unsigned int j = 0; j < _triangles.size(); j++) {
           if(_triangles[j][0] == i || _triangles[j][1] == i || _triangles[j][2] == i) {
-              nearNormals.push_back(_normalsT[j]);
               size++;
-              addNormalV(_normalsT[j]);
-              //qDebug() << i << " in " << j;
-              //qDebug() << j << " normal is " << _normalsT[j][0] << _normalsT[j][1] << _normalsT[j][2];
           }
       }
+  }
 
-      //qDebug() << nearNormals[i][0] << nearNormals[i][1] << nearNormals[i][2] << nearNormals.size();
+  _normalsV.resize(size);
+
+  //triangles then points
+  for(unsigned int t = 0; t < _triangles.size(); t++) {
+      for(unsigned int s = 0; s < 3; s++) {
+          _normalsV[3*t+s] = _normalsT[t];
+      }
   }
   qDebug() << "normalv size : " << _normalsV.size();
 
