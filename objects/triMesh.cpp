@@ -72,28 +72,7 @@ void TriMesh::computeNormalsT(){
 
 
 void TriMesh::computeNormalsV(float angle_threshold){
-  _normalsV.empty();
-  int size = 0;
-  // Compute a normal for each vertex of each triangle
-  // and put it in normalsV vector.
-  // Each normal is the average of adjacent triangle normals.
-  // Only normals whose angle with the current triangle normal
-  // is below the angle_threshold is taken into account.
-
-  // Replace code below
-
-
-
-  //Calculating normalsV.size()
-  for(unsigned int i = 0; i < _vertices.size(); i++) {
-      for(unsigned int j = 0; j < _triangles.size(); j++) {
-          if(_triangles[j][0] == i || _triangles[j][1] == i || _triangles[j][2] == i) {
-              size++;
-          }
-      }
-  }
-
-  _normalsV.resize(size);
+  _normalsV.resize(_triangles.size() * 3);
 
   //triangles then points
   for(unsigned int t = 0; t < _triangles.size(); t++) {
@@ -101,14 +80,7 @@ void TriMesh::computeNormalsV(float angle_threshold){
           _normalsV[3*t+s] = _normalsT[t];
       }
   }
-  qDebug() << "normalv size : " << _normalsV.size();
-
-  for(unsigned int i = 0; i < _normalsV.size(); i++) {
-      qDebug() << _normalsV[i][0] << _normalsV[i][1] << _normalsV[i][2];
-  }
-
-
-
+  qDebug() << "normalv size : " << _normalsV.size() << "  angle : " << angle_threshold;
 }
 
 double TriMesh::normalize(){

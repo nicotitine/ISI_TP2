@@ -18,6 +18,7 @@
 #include "objects/pyramid.h"
 #include "objects/cube.h"
 #include "objects/disk.h"
+#include "objects/cylinder.h"
 
 /**
 * Program usage
@@ -43,6 +44,7 @@ int main(int argc, char *argv[]){
   QPointer<MyScene> myScene = new MyScene(objectRadius);
 
   //add simple objects
+  myScene->addObject(new Cylinder());
   myScene->addObject(new Disk());
   myScene->addObject(new Cube());
   myScene->addObject(new Pyramid());

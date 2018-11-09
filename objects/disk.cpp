@@ -4,7 +4,7 @@
 
 Disk::Disk() : TriMesh() {
     _name = "Disque";
-    int nbStep = 10;
+    int nbStep = 20;
     // Vector of vector initialization
     static vector<vector<GLfloat>> v(nbStep+1, vector<GLfloat>(3));
     static vector<vector<GLfloat>> t(nbStep, vector<GLfloat>(3));

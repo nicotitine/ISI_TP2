@@ -17,7 +17,8 @@ HEADERS += my_main_window.h \
            objects/triMesh.h \
            objects/corner_cube.h \
            objects/cube.h \
-    objects/disk.h
+    objects/disk.h \
+    objects/cylinder.h
 FORMS += my_gui_form.ui
 SOURCES += main.cpp \
            my_main_window.cpp \
@@ -28,4 +29,5 @@ SOURCES += main.cpp \
            objects/triMesh.cpp \
     objects/cube.cpp \
     objects/corner_cube.cpp \
-    objects/disk.cpp
+    objects/disk.cpp \
+    objects/cylinder.cpp
