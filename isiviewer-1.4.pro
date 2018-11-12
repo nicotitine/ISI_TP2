@@ -19,7 +19,8 @@ HEADERS += my_main_window.h \
            objects/cube.h \
     objects/disk.h \
     objects/cylinder.h \
-    objects/cone.h
+    objects/cone.h \
+    objects/disk_hole.h
 FORMS += my_gui_form.ui
 SOURCES += main.cpp \
            my_main_window.cpp \
@@ -32,4 +33,5 @@ SOURCES += main.cpp \
     objects/corner_cube.cpp \
     objects/disk.cpp \
     objects/cylinder.cpp \
-    objects/cone.cpp
+    objects/cone.cpp \
+    objects/disk_hole.cpp

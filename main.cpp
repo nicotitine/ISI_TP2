@@ -18,6 +18,7 @@
 #include "objects/disk.h"
 #include "objects/cylinder.h"
 #include "objects/cone.h"
+#include "objects/disk_hole.h"
 
 /**
 * Program usage
@@ -43,6 +44,7 @@ int main(int argc, char *argv[]){
   QPointer<MyScene> myScene = new MyScene(objectRadius);
 
   //add simple objects
+  myScene->addObject(new DiskHole());
   myScene->addObject(new Cone());
   myScene->addObject(new Cylinder());
   myScene->addObject(new Disk());

@@ -4,7 +4,7 @@
 
 - [x] Corner Cube
 - [x] Disk
-- [ ] Disk Hole
+- [x] Disk Hole
 - [x] Cylinder
 - [x] Cone
 - [ ] Sphere
