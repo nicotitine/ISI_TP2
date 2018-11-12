@@ -5,7 +5,7 @@ QT += widgets xml opengl
 CONFIG *= qt opengl release
 TEMPLATE = app
 TARGET = isiviewer-1.4
-LIBS = -lQGLViewer-qt5
+LIBS = -lQGLViewer
 
 
 # Input
