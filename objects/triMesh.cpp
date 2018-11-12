@@ -1,45 +1,46 @@
 #include "triMesh.h"
 #include "QDebug"
-
 #include <glm/gtc/type_ptr.hpp>
 
-TriMesh::TriMesh() 
-  : Object3D()
-{
+TriMesh::TriMesh() : Object3D() {
   _name="TriMesh";
 }
 
-void TriMesh::addVertex(Vertex v){
+void TriMesh::addVertex(Vertex v) {
   extendBoundingBox(v);
   _vertices.push_back(v);
 }
-void TriMesh::addVertex(double x, double y, double z){
+
+void TriMesh::addVertex(double x, double y, double z) {
   addVertex(Vertex(x,y,z));
 }
-void TriMesh::addTriangle(Triangle t){
+
+void TriMesh::addTriangle(Triangle t) {
   _triangles.push_back(t);
 }
-void TriMesh::addTriangle(int v1, int v2, int v3){
+
+void TriMesh::addTriangle(int v1, int v2, int v3) {
   Triangle t;
   t.push_back(v1);
   t.push_back(v2);
   t.push_back(v3);
   addTriangle(t);
 }
-void TriMesh::addNormalT(Normal n){
+
+void TriMesh::addNormalT(Normal n) {
   _normalsT.push_back(n);
 }
-void TriMesh::addNormalV(Normal n){
+
+void TriMesh::addNormalV(Normal n) {
   _normalsV.push_back(n);
 }
 
-
-Vertex TriMesh::getVertex(int i){
+Vertex TriMesh::getVertex(int i) {
   return _vertices[i];
 }
 
 
-void TriMesh::computeBoundingBox(){
+void TriMesh::computeBoundingBox() {
   if(_vertices.size()<1) return;
 
   _bBoxMax=_vertices[0];
@@ -48,14 +49,7 @@ void TriMesh::computeBoundingBox(){
     extendBoundingBox(_vertices[i]);
 }
 
-void TriMesh::computeNormalsT(){
-  _normalsT.empty();
-
-  // Compute a normal for each triangle
-  // and put it in normalsT vector.
-
-  // Replace code below
-
+void TriMesh::computeNormalsT() {
   for(unsigned int t=0; t<_triangles.size(); ++t) {
       glm::vec3 triangle(_triangles.at(t)[0], _triangles.at(t)[1], _triangles.at(t)[2]);
 
@@ -71,7 +65,7 @@ void TriMesh::computeNormalsT(){
 }
 
 
-void TriMesh::computeNormalsV(float angle_threshold){
+void TriMesh::computeNormalsV(float angle_threshold) {
   _normalsV.resize(_triangles.size() * 3);
 
   //triangles then points
@@ -80,10 +74,9 @@ void TriMesh::computeNormalsV(float angle_threshold){
           _normalsV[3*t+s] = _normalsT[t];
       }
   }
-  qDebug() << "normalv size : " << _normalsV.size() << "  angle : " << angle_threshold;
 }
 
-double TriMesh::normalize(){
+double TriMesh::normalize() {
   glm::vec3 size=_bBoxMax-_bBoxMin;
   glm::vec3 c=getBoundingBoxCenter();
   double scale=2/max(size.x, max(size.y,size.z));
@@ -102,13 +95,13 @@ double TriMesh::normalize(){
 }
 
 
-std::string TriMesh::toString(){
+std::string TriMesh::toString() {
   ostringstream oss;
   oss<< "["<< _name <<" v:"<< _vertices.size() <<", t:"<< _triangles.size() <<"]";
   return oss.str();
 }
 
-void TriMesh::toOStream(std::ostream& out) const{
+void TriMesh::toOStream(std::ostream& out) const {
   Object3D::toOStream(out);
   out << "   v: " << _vertices.size()  << std::endl;
   out << "   t: " << _triangles.size() << std::endl;
@@ -116,7 +109,7 @@ void TriMesh::toOStream(std::ostream& out) const{
 
 
 
-void TriMesh::draw(bool flipnormals){
+void TriMesh::draw(bool flipnormals) {
   unsigned int i,t;
   bool smooth;
   Normal n;
@@ -151,7 +144,7 @@ void TriMesh::draw(bool flipnormals){
 }
 
 
-void TriMesh::drawNormals(bool flipnormals){
+void TriMesh::drawNormals(bool flipnormals) {
   unsigned int i,t;
   bool smooth;
   glm::vec3 p,n;
@@ -190,7 +183,7 @@ void TriMesh::drawNormals(bool flipnormals){
     }
 }
 
-void TriMesh::drawVertices(){
+void TriMesh::drawVertices() {
   glPointSize(3.);
   glBegin(GL_POINTS);
   for(unsigned int i=0; i<_vertices.size(); ++i )
