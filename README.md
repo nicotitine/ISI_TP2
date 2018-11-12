@@ -6,13 +6,13 @@
 - [x] Disk
 - [ ] Disk Hole
 - [x] Cylinder
-- [ ] Cone
+- [x] Cone
 - [ ] Sphere
 - [ ] Torus
 
 ## Illumination des objets
 
-- [ ] Fonctions ComputeNormalsV & ComputeNormalsT fonctionnelles
+- [x] Fonctions ComputeNormalsV & ComputeNormalsT fonctionnelles
 - [ ] Illumination smooth fonctionnelle
 
 ### Modélisation par discrétisatioin d'une fonction math
