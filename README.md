@@ -8,7 +8,7 @@
 - [x] Cylinder
 - [x] Cone
 - [ ] Sphere
-- [ ] Torus
+- [x] Torus
 
 ## Illumination des objets
 
