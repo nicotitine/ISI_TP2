@@ -35,3 +35,7 @@ float func_expcos(float x, float y) {
 - [ ] **BONUS** : Ajouter une autre fonction mathématique
 
 ## Les fichiers
+
+- [ ] Gérer les paramètres de lancement
+- [ ] Afficher les objets
+- [ ] Lire les polygones

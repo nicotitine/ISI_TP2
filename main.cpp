@@ -101,7 +101,6 @@ int main(int argc, char *argv[]){
   myScene->addObject(dataObject);
   myScene->addObject(new Sphere());
   myScene->addObject(new Torus());
-
   myScene->addObject(new DiskHole());
   myScene->addObject(new Cone());
   myScene->addObject(new Cylinder());
