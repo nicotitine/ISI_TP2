@@ -1,6 +1,5 @@
 #include "sphere.h"
 #include "QDebug"
-#include "GL/glut.h"
 
 Sphere::Sphere() : TriMesh() {
     _name = "Sphere";
@@ -17,8 +16,6 @@ Sphere::Sphere() : TriMesh() {
         }
 
     qDebug() << "vertices size" << _vertices.size();
-
-    glutSolidSphere(1, 20, 20);
 
 
 
@@ -67,7 +64,7 @@ Sphere::Sphere() : TriMesh() {
 //    qDebug() << _vertices.size();
 
 //    for(int i = 0; i < nbStep-1; i++) {
-//        for(int j = 0; j < nbStep -1; j++) {
+//        for(int j = 0; j < nbStep -1; j    glutSolidSphere(1, 20, 20);++) {
 //            addTriangle(i*nbStep, i * nbStep + j, i * nbStep + j + 1);
 //        }
 //    }

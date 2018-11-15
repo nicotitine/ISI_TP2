@@ -1,4 +1,4 @@
-#include "disk_hole.h".h"
+#include "disk_hole.h"
 #include "QDebug"
 
 DiskHole::DiskHole() : TriMesh() {
