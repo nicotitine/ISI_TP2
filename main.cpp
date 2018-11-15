@@ -37,8 +37,9 @@ void usage(char* name){
 
 int main(int argc, char *argv[]){
   QApplication app(argc, argv);
-
-  QFile data("../ISI_TP2/data/aircraft.off");
+  // Create the trimesh object
+  TriMesh * dataObject = new TriMesh();
+  QFile data("../ISI_TP2/data/venus.off");
   if(data.open(QIODevice::ReadOnly)) {
       QTextStream in(&data);
       QString line = in.readLine();
@@ -68,10 +69,9 @@ int main(int argc, char *argv[]){
               i++;
           } while (i < line.length());
           nb_colors = nb_read.toInt();
-          in.readLine();
+          //in.readLine();
 
-          // Create the trimesh object
-          TriMesh * dataObject = new TriMesh();
+
 
           // READ VERTICES
           for(i = 0; i < nb_vertices; i++) {
@@ -98,22 +98,33 @@ int main(int argc, char *argv[]){
 
               // Add the {x, y, z} vertice
               dataObject->addVertex(x.toDouble(), y.toDouble(), z.toDouble());
+              qDebug() << x.toDouble();
           }
           // READ TRIANGLES
+          int cursor;
+          QString points;
           for(i = 0; i < nb_triangles; i++) {
               line = in.readLine();
-              int size = QString(line.at(0)).toInt();
-              int cursor = 3;
-              QString test = "";
-              for(int j = 0; j < size; j++) {
-                  do {
-                      //QString test("");
-                      test += line.at(cursor);
-                      cursor++;
-                  } while (cursor < line.length() -1);
-                  qDebug() << test;
+              cursor = 3;
+              points = "";
+              do {
+                //QString test("");
+                points += line.at(cursor);
+                cursor++;
+
+               } while (cursor < line.length());
+              QStringList list = points.split(" ", QString::SkipEmptyParts);
+              if(list.size() == 3) {
+                  QString fp = list.at(0);
+                  QString sp = list.at(1);
+                  QString tp = list.at(2);
+                  dataObject->addTriangle(fp.toInt(), sp.toInt(), tp.toInt());
+                   qDebug() << fp << sp << tp;
               }
           }
+
+          dataObject->computeNormalsT();
+          dataObject->computeNormalsV();
 
 
       } else {
@@ -132,6 +143,7 @@ int main(int argc, char *argv[]){
   QPointer<MyScene> myScene = new MyScene(objectRadius);
 
   //add simple objects
+  myScene->addObject(dataObject);
   myScene->addObject(new Sphere());
   myScene->addObject(new Torus());
 
