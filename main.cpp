@@ -36,102 +36,57 @@ void usage(char* name){
 }
 
 int main(int argc, char *argv[]){
-  QApplication app(argc, argv);
-  // Create the trimesh object
-  TriMesh * dataObject = new TriMesh();
-  QFile data("../ISI_TP2/data/venus.off");
-  if(data.open(QIODevice::ReadOnly)) {
-      QTextStream in(&data);
-      QString line = in.readLine();
-      if(line == "OFF") {
-          line = in.readLine();
-          int i = 0;
-          QString nb_read = "";
-          int nb_vertices;
-          int nb_triangles;
-          int nb_colors;
-          while(line.at(i) != " ") {
-              nb_read += line.at(i);
-              i++;
-          }
-          nb_vertices = nb_read.toInt();
-          nb_read = "";
-          i++;
-          while(line.at(i) != " ") {
-              nb_read += line.at(i);
-              i++;
-          }
-          nb_triangles = nb_read.toInt();
-          nb_read = "";
-          i++;
-          do {
-              nb_read += line.at(i);
-              i++;
-          } while (i < line.length());
-          nb_colors = nb_read.toInt();
-          //in.readLine();
+    QApplication app(argc, argv);
 
+    TriMesh * dataObject = new TriMesh();
+    QFile data("../isi_tp1_project/data/venus.off");
+    if(data.open(QIODevice::ReadOnly)) {
+        QTextStream in(&data);
+        QString line = in.readLine();
+        if(line == "OFF") {
+            int i = 0;
+            int nb_vertices, nb_triangles, old_pos;
+            QString nb_vertices_buf, nb_triangles_buf, x, y, z;
+            QStringList vertices_list, triangles_list, parameters_list = in.readLine().split(" ", QString::SkipEmptyParts);
 
+            nb_vertices_buf = parameters_list.at(0);
+            nb_triangles_buf = parameters_list.at(1);
 
-          // READ VERTICES
-          for(i = 0; i < nb_vertices; i++) {
-              QString x, y, z;
-              x = "";
-              y = "";
-              z = "";
-              int j = 0;
-              line = in.readLine();
-              while(line.at(j) != " ") {
-                  x += line.at(j);
-                  j++;
-              }
-              j++;
-              while(line.at(j) != " ") {
-                  y += line.at(j);
-                  j++;
-              }
-              j++;
-              do {
-                  z += line.at(j);
-                  j++;
-              } while (j < line.length());
+            nb_vertices = nb_vertices_buf.toInt();
+            nb_triangles = nb_triangles_buf.toInt();
 
-              // Add the {x, y, z} vertice
-              dataObject->addVertex(x.toDouble(), y.toDouble(), z.toDouble());
-              qDebug() << x.toDouble();
-          }
-          // READ TRIANGLES
-          int cursor;
-          QString points;
-          for(i = 0; i < nb_triangles; i++) {
-              line = in.readLine();
-              cursor = 3;
-              points = "";
-              do {
-                //QString test("");
-                points += line.at(cursor);
-                cursor++;
+            old_pos = in.pos();
 
-               } while (cursor < line.length());
-              QStringList list = points.split(" ", QString::SkipEmptyParts);
-              if(list.size() == 3) {
-                  QString fp = list.at(0);
-                  QString sp = list.at(1);
-                  QString tp = list.at(2);
-                  dataObject->addTriangle(fp.toInt(), sp.toInt(), tp.toInt());
-                   qDebug() << fp << sp << tp;
-              }
-          }
+            // for aircraft.off which has a blank line bellow the counting numbers line
+            if(in.readLine() != "")
+                in.seek(old_pos);
 
-          dataObject->computeNormalsT();
-          dataObject->computeNormalsV();
+            // READ VERTICES
+            for(i = 0; i < nb_vertices; i++) {
+                vertices_list = in.readLine().split(" ", QString::SkipEmptyParts);
+                x = vertices_list.at(0);
+                y = vertices_list.at(1);
+                z = vertices_list.at(2);
+                dataObject->addVertex(x.toDouble(), y.toDouble(), z.toDouble());
+            }
 
-
-      } else {
-        std::cout << "Le fichier donné n'est pas au format off." << std::endl;
-      }
-  }
-  data.close();
+            // READ TRIANGLES
+            for(i = 0; i < nb_triangles; i++) {
+                triangles_list = in.readLine().split(" ", QString::SkipEmptyParts);
+                if(triangles_list.at(0) == "3") {
+                    x = triangles_list.at(1);
+                    y = triangles_list.at(2);
+                    z = triangles_list.at(3);
+                    dataObject->addTriangle(x.toInt(), y.toInt(), z.toInt());
+                }
+            }
+            dataObject->computeNormalsT();
+            dataObject->computeNormalsV();
+        } else {
+            std::cout << "Le fichier donné n'est pas au format off." << std::endl;
+        }
+    }
+    data.close();
 
   // Parse program arguments here
   // with the tclap library
