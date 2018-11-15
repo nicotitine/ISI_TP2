@@ -117,7 +117,6 @@ void TriMesh::draw(bool flipnormals) {
   GLint mode[1];
   glGetIntegerv(GL_SHADE_MODEL, mode);
   smooth= mode[0]==GL_SMOOTH && _normalsV.size()==_triangles.size()*3;
-
   if(smooth){
       glBegin(GL_TRIANGLES);
       for(t=0; t<_triangles.size(); ++t)

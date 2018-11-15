@@ -3,7 +3,7 @@
 
 Cone::Cone() : TriMesh() {
     _name = "Cone";
-    int nbStep = 20;
+    int nbStep = 30;
     GLfloat p = 0;
 
     this->addVertex(0,0,-1);

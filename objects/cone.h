@@ -9,9 +9,8 @@
  */
 class Cone : public TriMesh {
 public:
-  Cone();
-  virtual ~Cone(){};
-
+    Cone();
+    virtual ~Cone(){}
 };
 
 #endif // CONE_H
