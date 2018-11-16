@@ -1,5 +1,4 @@
 #include "cube.h"
-#include "QDebug"
 
 Cube::Cube() : TriMesh() {
   _name = "Cube";
@@ -25,7 +24,6 @@ Cube::Cube() : TriMesh() {
   for (int i=0; i<12; ++i)
     this->addTriangle(t[i][0], t[i][1], t[i][2]);
 
-  qDebug() << "cube";
   computeNormalsT();  // to be fixed
   computeNormalsV();  // to be fixed
 }

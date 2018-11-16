@@ -5,7 +5,7 @@
 
 class Disk : public TriMesh {
 public:
-    Disk();
+    Disk(int nvertices);
     virtual ~Disk(){};
 };
 

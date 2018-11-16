@@ -9,7 +9,7 @@
  */
 class Cone : public TriMesh {
 public:
-    Cone();
+    Cone(int nvertices);
     virtual ~Cone(){}
 };
 

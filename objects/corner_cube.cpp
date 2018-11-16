@@ -1,5 +1,4 @@
 #include "corner_cube.h"
-#include "QDebug"
 
 CornerCube::CornerCube() : TriMesh() {
   _name = "Corner Cube";
@@ -21,7 +20,6 @@ CornerCube::CornerCube() : TriMesh() {
   for (int i=0; i<16; ++i)
     this->addTriangle(t[i][0], t[i][1], t[i][2]);
 
-  qDebug() << "corner_cube";
   computeNormalsT();  // to be fixed
   computeNormalsV();  // to be fixed
 }

@@ -1,12 +1,12 @@
 #include "sphere.h"
 #include "QDebug"
 
-Sphere::Sphere() : TriMesh() {
+Sphere::Sphere(int nvertices) : TriMesh() {
     _name = "Sphere";
     float r = 1.0f;
-    for (double phi = 0.; phi < 2*PI; phi += PI/5.) // Azimuth [0, 2PI]
+    for (double phi = 0.; phi < 2*PI; phi += PI/(float)nvertices) // Azimuth [0, 2PI]
         {
-            for (double theta = 0.; theta < PI; theta += PI/5.) // Elevation [0, PI]
+            for (double theta = 0.; theta < PI; theta += PI/(float)nvertices) // Elevation [0, PI]
             {
                 float x = r * cos(phi) * sin(theta);
                 float y = r * sin(phi) * sin(theta);
@@ -15,7 +15,7 @@ Sphere::Sphere() : TriMesh() {
             }
         }
 
-    qDebug() << "vertices size" << _vertices.size();
+    //qDebug() << "vertices size" << _vertices.size();
 
 
 
@@ -115,7 +115,7 @@ Sphere::Sphere() : TriMesh() {
 //    addTriangle(29,25,26);
 
 
-    qDebug() << "disk";
+    //qDebug() << "disk";
     computeNormalsT();  // to be fixed
     computeNormalsV();  // to be fixed
 

@@ -1,5 +1,4 @@
 #include "triMesh.h"
-#include "QDebug"
 #include <glm/gtc/type_ptr.hpp>
 
 TriMesh::TriMesh() : Object3D() {

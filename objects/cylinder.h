@@ -9,7 +9,7 @@
  */
 class Cylinder : public TriMesh {
 public:
-  Cylinder();
+  Cylinder(int nvertices);
   virtual ~Cylinder(){};
 
 };

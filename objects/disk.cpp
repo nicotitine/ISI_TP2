@@ -1,24 +1,20 @@
 #include "disk.h"
-#include "QDebug"
 
-Disk::Disk() : TriMesh() {
+Disk::Disk(int nvertices) : TriMesh() {
     _name = "Disque";
-    int nbStep = 30;
     GLfloat p = 0;
 
-    for( GLfloat n = 0; n < nbStep; n++ ) {
-        p+= 2 * M_PI / (GLfloat)nbStep;
+    for( GLfloat n = 0; n < nvertices; n++ ) {
+        p+= 2 * M_PI / (GLfloat)nvertices;
         this->addVertex(sin(p), cos(p), 0);
     }
 
-    for (int i=0; i<nbStep-2; i++) {
-        if(i == nbStep - 1)
+    for (int i=0; i<nvertices-2; i++) {
+        if(i == nvertices - 1)
             this->addTriangle(0, 1, i+1);
         else
             this->addTriangle(0, i+2, i+1);
     }
-
-    qDebug() << "disk";
     computeNormalsT();  // to be fixed
     computeNormalsV();  // to be fixed
 }

@@ -9,7 +9,7 @@
  */
 class Sphere : public TriMesh {
 public:
-    Sphere();
+    Sphere(int nvertices);
     virtual ~Sphere(){}
 };
 

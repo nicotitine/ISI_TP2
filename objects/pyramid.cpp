@@ -1,5 +1,4 @@
 #include "pyramid.h"
-#include "QDebug"
 
 Pyramid::Pyramid(): TriMesh() {
   _name = "Pyramid";
@@ -19,7 +18,6 @@ Pyramid::Pyramid(): TriMesh() {
   for (int i=0; i<6; ++i)
     this->addTriangle(ts[i][0], ts[i][1], ts[i][2]);
 
-  qDebug() << "pyramid";
   computeNormalsT();  // to be fixed
   computeNormalsV();  // to be fixed
 }
